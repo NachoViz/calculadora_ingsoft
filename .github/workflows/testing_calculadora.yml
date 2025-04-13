@@ -1,0 +1,27 @@
+# This is a GitHub Actions workflow file
+name: Pruebas de la calculadora
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    name: Testear calculadora
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: pip install pytest
+
+      - name: Ejecutar pruebas
+        run: pytest test_calculadora.py
